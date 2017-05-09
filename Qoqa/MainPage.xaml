@@ -8,6 +8,9 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<Image
-    </Grid>
+		<!--<Image Source="{x:Bind QoqaPage.Product.Image}" />-->
+		<TextBlock Text="{x:Bind QoqaPage.Product.Name,Mode=OneWay}" />
+		<TextBlock Text="{x:Bind QoqaPage.Product.Description,Mode=OneWay}" />
+		<TextBlock Text="{x:Bind QoqaPage.Product.Price,Mode=OneWay}" />
+	</Grid>
 </Page>

@@ -28,6 +28,7 @@ namespace Qoqa.Logic
 
 		private void ParsePageToProduct(string page)
 		{
+			page = page.Replace("\\\"", "\"");
 			ParseName(page);
 			ParseDescription(page);
 			ParsePrice(page);

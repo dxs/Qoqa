@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Qoqa.Logic;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace Qoqa
 {
     public sealed partial class MainPage : Page
     {
+		GetMain QoqaPage = new GetMain();
         public MainPage()
         {
             this.InitializeComponent();
