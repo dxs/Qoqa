@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace Qoqa.Logic
@@ -31,8 +32,8 @@ namespace Qoqa.Logic
 			set { name = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Name))); }
 		}
 
-		private BitmapImage image = new BitmapImage();
-		public BitmapImage Image
+		private string image = string.Empty;
+		public string Image
 		{
 			get { return image; }
 			set { image = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Image))); }
@@ -51,5 +52,22 @@ namespace Qoqa.Logic
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
+	}
+
+	public class ImageConverter : IValueConverter
+	{
+		public object Convert(object value, Type targetType, object parameter, string language)
+		{
+			string uri = (string)value;
+			if (uri == string.Empty)
+				return null;
+			BitmapImage imgSource = new BitmapImage(new Uri(uri));
+			return imgSource;
+		}
+
+		public object ConvertBack(object value, Type targetType, object parameter, string language)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

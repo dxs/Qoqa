@@ -28,7 +28,7 @@ namespace Qoqa.Logic
 
 		private void ParsePageToProduct(string page)
 		{
-			page = page.Replace("\\\"", "\"");
+			page = page.Replace("\"", "");
 			ParseName(page);
 			ParseDescription(page);
 			ParsePrice(page);
@@ -40,9 +40,9 @@ namespace Qoqa.Logic
 		{
 			try
 			{
-				string[] tmp = page.Split(new string[] { "<meta property=\"og:description\" content=\"" }, StringSplitOptions.RemoveEmptyEntries);
+				string[] tmp = page.Split(new string[] { "<meta property=og:description content=" }, StringSplitOptions.RemoveEmptyEntries);
 				string tmpstr = tmp[1];
-				tmp = tmpstr.Split(new string[] { "\"/>" }, StringSplitOptions.RemoveEmptyEntries);
+				tmp = tmpstr.Split(new string[] { "/>" }, StringSplitOptions.RemoveEmptyEntries);
 				tmpstr = tmp[0];
 				Product.Description = tmpstr;
 			}
@@ -56,11 +56,11 @@ namespace Qoqa.Logic
 		{
 			try
 			{
-				string[] tmp = page.Split(new string[] { "<meta property=\"og:image\" content=\"" }, StringSplitOptions.RemoveEmptyEntries);
+				string[] tmp = page.Split(new string[] { "<meta property=og:image content=" }, StringSplitOptions.RemoveEmptyEntries);
 				string tmpstr = tmp[1];
-				tmp = tmpstr.Split(new string[] { "\"/>" }, StringSplitOptions.RemoveEmptyEntries);
+				tmp = tmpstr.Split(new string[] { "/>" }, StringSplitOptions.RemoveEmptyEntries);
 				tmpstr = tmp[0];
-				Product.Image = new BitmapImage(new Uri(tmpstr));
+				Product.Image = tmpstr;
 			}
 			catch (Exception e)
 			{
@@ -72,9 +72,9 @@ namespace Qoqa.Logic
 		{
 			try
 			{
-				string[] tmp = page.Split(new string[] { "\"monetized_regular_price\":\"" }, StringSplitOptions.RemoveEmptyEntries);
+				string[] tmp = page.Split(new string[] { "monetized_regular_price:" }, StringSplitOptions.RemoveEmptyEntries);
 				string tmpstr = tmp[1];
-				tmp = tmpstr.Split(new string[] { ".-" }, StringSplitOptions.RemoveEmptyEntries);
+				tmp = tmpstr.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
 				tmpstr = tmp[0];
 				Product.NrlPirce = tmpstr;
 			}
@@ -88,9 +88,9 @@ namespace Qoqa.Logic
 		{
 			try
 			{
-				string[] tmp = page.Split(new string[] { "\"monetized_lot_price\":\"" }, StringSplitOptions.RemoveEmptyEntries);
+				string[] tmp = page.Split(new string[] { "monetized_lot_price:" }, StringSplitOptions.RemoveEmptyEntries);
 				string tmpstr = tmp[1];
-				tmp = tmpstr.Split(new string[] { ".-" }, StringSplitOptions.RemoveEmptyEntries);
+				tmp = tmpstr.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
 				tmpstr = tmp[0];
 				Product.Price = tmpstr;
 			}
@@ -104,9 +104,9 @@ namespace Qoqa.Logic
 		{
 			try
 			{
-				string[] tmp = page.Split(new string[] { "<meta name=\"title\" content=\"" }, StringSplitOptions.RemoveEmptyEntries);
+				string[] tmp = page.Split(new string[] { "<meta name=title content=" }, StringSplitOptions.RemoveEmptyEntries);
 				string tmpstr = tmp[1];
-				tmp = tmpstr.Split(new string[] { "\"/>" }, StringSplitOptions.RemoveEmptyEntries);
+				tmp = tmpstr.Split(new string[] { "/>" }, StringSplitOptions.RemoveEmptyEntries);
 				tmpstr = tmp[0];
 				Product.Name = tmpstr;
 			}
