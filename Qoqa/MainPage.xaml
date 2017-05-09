@@ -13,7 +13,7 @@
 
 		<Style TargetType="TextBlock" x:Key="BlockTitle">
 			<Setter Property="FontSize" Value="50" />
-			<Setter Property="Foreground" Value="Purple" />
+			<Setter Property="Foreground" Value="#eb008a" />
 			<Setter Property="HorizontalAlignment" Value="Center" />
 			<Setter Property="VerticalAlignment" Value="Center" />
 			<Setter Property="TextWrapping" Value="Wrap" />
@@ -21,6 +21,14 @@
 			<Setter Property="TextAlignment" Value="Center" />
 		</Style>
 		<Style TargetType="TextBlock" x:Key="BlocDescrip">
+			<Setter Property="FontSize" Value="30" />
+			<Setter Property="Foreground" Value="DarkGray" />
+			<Setter Property="HorizontalAlignment" Value="Stretch" />
+			<Setter Property="VerticalAlignment" Value="Stretch" />
+			<Setter Property="TextWrapping" Value="Wrap" />
+			<Setter Property="TextAlignment" Value="Justify" />
+		</Style>
+		<Style TargetType="TextBlock" x:Key="price">
 			<Setter Property="FontSize" Value="30" />
 			<Setter Property="Foreground" Value="DarkGray" />
 			<Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -36,19 +44,23 @@
 			<RowDefinition />
 		</Grid.RowDefinitions>
 		<Image Source="{x:Bind QoqaPage.Product.Image,Mode=OneWay,Converter={StaticResource ImageConverter}}"
-Stretch="None" Grid.Row="1"/>
-		<Rectangle Height="30" Fill="RosyBrown"/>
-		<Grid Grid.Row="1">
+Stretch="Fill" Grid.Row="1"/>
+		<RelativePanel x:Name="BackdropGrid" SizeChanged="BackdropGrid_SizeChanged" />
+
+		<Rectangle Height="30" Fill="#eb008a"/>
+		<Grid Grid.Row="1" Margin="10">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
 			</Grid.RowDefinitions>
 			
-			
 			<TextBlock Grid.Row="0" Margin="10" Text="{x:Bind QoqaPage.Product.Name,Mode=OneWay}" Style="{StaticResource BlockTitle}" />
 			<TextBlock Grid.Row="1" Margin="10" Text="{x:Bind QoqaPage.Product.Description,Mode=OneWay}" Style="{StaticResource BlocDescrip}" />
-			<TextBlock Grid.Row="2" Margin="10" Text="{x:Bind QoqaPage.Product.Price,Mode=OneWay}" />
+			<StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+				<TextBlock Grid.Row="2" Margin="10" Text="{x:Bind QoqaPage.Product.Price,Mode=OneWay}" Style="{StaticResource price}" />
+				<TextBlock Grid.Row="2" Margin="10" Text="{x:Bind QoqaPage.Product.NrlPirce,Mode=OneWay}" Style="{StaticResource price}" />
+			</StackPanel>
 		</Grid>
 	</Grid>
 </Page>
